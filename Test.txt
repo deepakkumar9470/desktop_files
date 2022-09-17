@@ -1,0 +1,225 @@
+  
+
+   1. typeof test === ‘object’
+      Ans: typeof test === ‘object’ we can use in case of object type but one more condtion 
+           i.e. test !== null then it satifies full condition
+
+  
+  2. Ans: 
+     outer func: this.foo = bar
+     outer func: self.foo = bar
+     inner func: this.foo = undefined
+     inner func: self.foo = bar
+     
+     first console bar because of var (function and global scopped)
+     second console bar because of accessing global var by val or key i.e. self
+     third console undefined because of this refer only current parent context
+     fourth console bar because of var (function and global scopped)
+
+
+
+  3. function occurence(arr) { 
+
+       for(let i =0 ;i<arr.length;i++){
+
+       let count = 0
+ 
+        for(let j =0 ;j<arr.length;j++){
+
+         if(arr[i] && i > j ){
+            
+break;
+
+            count++
+  
+           }
+            
+            
+
+       if(arr[i] > arr[i+j]){
+                
+                
+         return `${arr} occurs ${count} times`
+            
+          }
+            
+            
+        
+          }
+    }
+    
+
+       }
+
+
+   console.log(occurence[1,2,3,1,1,0,5,5])
+    
+
+
+
+  4. console.log(false == '0')
+
+     console.log(false === '0')  
+     
+     Ans: In first case == means it checks only data not type so result will be true   
+          In second case === means it strictly checks data as well as  type so result will be false
+
+
+  5.  a. Data Types in JS : Number, String, Null,undefined, boolean,symbol 
+      b. Variable Hoisting : Hoisting means moving var to the top scope , 
+         i.e: var is firstly declared then initialize
+      c. Closure : Closure means accessing of parent function var from child function
+      d. Callback : Call back is basically a function which passes as parameters/argument to another
+                    function which execute at the end after all process done.
+
+
+  6. Ans : Floyd's Triangle
+    
+     function floyd(n){
+
+              var k = 1
+    var res = ""
+    
+              for(let i= 1; i<=n;i++){
+ 
+                for(let j= 1; j<=i;j++, k++){
+ 
+                 res= res+k
+ 
+                         }
+ 
+           res= res+"\n"
+    }
+
+          }
+
+
+        console.log(floyd(5))
+
+
+
+  7. Insert Query : 
+     db.collection.insert({name : "Deepak:,email :  "dk2022@gmail.com",age:  25}
+     Selectt Query : 
+     db.collection.find({name : "Deepak:,email :  "dk2022@gmail.com",age:  25}
+
+  8.Express server in Node : 
+    
+    import express from 'express'
+    const app = express()
+    app.get('/', (req,res)=>{
+       res.send('Hello')
+       })
+    app.listen(5000, ()=>{
+          console.log('Server started at port 5000')
+      })
+
+ 9.  React component :
+    
+     const App = () =>{
+
+         return  (
+
+                   <h1>Hello React!</h1>
+              )
+     }
+    export default App;
+
+
+
+
+  import React, { useState } from 'react'
+
+import './cart.css'
+import { Link } from 'react-router-dom'
+import { FaArrowLeft, FaRupeeSign } from 'react-icons/fa'
+import {useSelector} from 'react-redux'
+
+const Cart = () => {
+    // const [product,setProduct] = useState([])
+
+    const cart = useSelector((state) =>  state.cart)
+    console.log('from cart', cart)
+
+    return (
+        <div className='cart_container'>
+            <h2>Shopping Cart</h2>
+            {
+                cart.cartItems.lenght === 0 ?
+                    (<div>
+                        <h3>Cart is empty</h3>
+                        <div className="start_shopping">
+                            <Link to="/" className='nav_link'><FaArrowLeft /></Link>
+                            <span>Start Shopping</span>
+                        </div>
+                    </div>) :
+                    (
+                        <div>
+                            <div className="titles">
+                                <h3 className="product_titles">Mens shoe</h3>
+                                <h3 className="product_price">Price</h3>
+                                <h3 className="product_quantity">Quantity</h3>
+                                <h3 className="product_total">Total</h3>
+                            </div>
+
+                            <div className="cart_items">
+                                {
+                                    cart.cartItems?.map((cart) => (
+                                        <div className="cart_item">
+                                            <div className="cart_products">
+                                                <img src={cart.picture[0]} alt={cart.name} />
+                                                <div>
+                                                    <h3>{cart.name}</h3>
+                                                    <p>{cart.name}</p>
+                                                    <button>Remove</button>
+                                                </div>
+                                            </div>
+                                            <div className="cart_product_price">
+                                                Rs {cart.price}
+                                            </div>
+                                            <div className="cart_product_quantity">
+                                                <button>-</button>
+                                                <div className="count">{cart.cartQuantity}</div>
+                                                <button>+</button>
+                                            </div>
+
+                                            <div className="cart_product_total">
+                                                Rs {Number(cart.price) * cart.cartQuantity}
+                                            </div>
+
+                                        </div>
+                                    ))
+                                }
+                            </div>
+
+
+                            <div className="cart_summary">
+                                <button className="clear_cart">Clear Cart</button>
+                                <div className="cart_checkout">
+                                <div className="cart_subtotal">
+                                    <span>SubTotal</span>
+                                    <span className="count"><FaRupeeSign />2004 /-</span>
+                                </div>
+                                <p>Taxes and shipping calculated at checkout</p>
+                                <button>Checkout</button>
+                                <div className="continue_shopping">
+                                    <Link to="/" className='nav_link'><FaArrowLeft /></Link>
+                                    <span>Continue Shopping</span>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+        </div>
+    )
+}
+
+export default Cart
+
+
+ 
+
+
+
+

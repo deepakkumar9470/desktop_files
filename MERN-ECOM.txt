@@ -1,0 +1,145 @@
+
+https://docs.google.com/forms/u/0/d/e/1FAIpQLSf-IJpPTMNKmqJuzsULqFRH4EGFKQucrzCh6FzdKcT-iF-dpA/formResponse
+
+https://docs.google.com/forms/u/0/d/e/1FAIpQLSfZD0TB2Urzw-dD3EmUzDcfI4NwGws9P7xJBYcS-o5cnajhxg/formResponse
+  https://github.com/chaoocharles/complete-shopping-cart
+  function findPermutations  (string)  {
+  if (!string || typeof string !== "string"){
+    return "Please enter a string"
+  } else if (string.length < 2 ){
+    return string
+  }
+
+  let permutationsArray = [] 
+   
+  for (let i = 0; i < string.length; i++){
+     let char = string[i]
+
+    if (string.indexOf(char) != i)
+    continue
+
+    let remainingChars = string.slice(0, i) + string.slice(i + 1, string.length)
+
+    for (let permutation of findPermutations(remainingChars)){
+      permutationsArray.push(char + permutation) }
+  }
+  return permutationsArray
+}
+   console.log(findPermutations('hello'))
+
+
+
+
+
+
+var prevMonth = new Date()
+ 
+
+console.log('1st', prevMonth)
+
+ 
+prevMonth.setMonth(prevMonth.getMonth()-1);
+
+console.log('prev months', prevMonth.toLocaleString())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+function avg(arr) {
+
+     var res = arr.reduce((a,b) => {
+return a+b
+})
+ 
+     var average = res / arr.length;
+     
+     
+     const count = {}
+     
+     for(const val of arr) {
+
+     if(count[val]) {
+
+     count[val] += 1
+  
+     }else{
+ 
+        count[val] = 1
+ 
+         }
+
+         }
+    
+     
+    
+        return count
+     
+
+}
+    
+
+const res =  avg([2,5,1,6,3,1])
+    
+
+console.log(res['3'])
+
+
+
+
+
+
+
+
+function larg_small(arr) {
+ 
+     let largest = arr[0]
+    
+     let smallest = arr[0]
+
+     
+    for (var i=0; i<arr.length;i++) {
+         
+         let temp = arr[i]
+            
+            if(temp >largest ) {
+ 
+              largest  = arr[i]
+ 
+             }
+            
+            if (temp < smallest){
+ 
+               smallest = arr[i];
+ 
+              }
+             }
+        
+     
+          var average = largest+smallest/arr.length;
+     
+           return average
+     
+
+           }
+
+
+      const res =  larg_small([2,5,1,6,3,1])
+
+      console.log(res)

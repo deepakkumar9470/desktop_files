@@ -1,0 +1,574 @@
+  deepak@2022
+
+  https://github.com/safak/youtube2022/tree/fullstack-youtube-clone
+  promise, regex, aggregate, inc, push,pull
+  
+  https://github.com/learnthiscode/ecomern-frontend
+  
+  https://www.youtube.com/watch?v=U4SElABKIEM&list=PLolI8AY2AS9YO1kf0i_ui5_sKtxZg-yiR
+   
+     function oddNo(num){
+
+        
+          
+               
+    
+     }
+
+    console.log(oddNo(7))
+
+
+  2,3,5,7
+
+   let count = 2
+   function primeNo(num){
+
+         if(num ==0) return 0
+         if(num ==1) return 1
+
+         
+         for(let i=2 ;i<num;i++) {
+             
+             if(num % i == 0 && num % 1 == 0{  return 'Not a prime no'}
+             count++
+
+           }
+
+       return `${num} is a prime no`
+
+
+   
+
+}
+
+console.logprimeNo(7))
+
+
+   var a;
+   a = 10
+
+
+    function hoisting(){
+
+       console.log(a)
+
+   
+     }
+    hoisting()
+  
+  
+
+   var a  = 10
+   const b = 10
+    
+   function func1(){
+        console.log(a)
+        b = 30
+
+         console.log(b)
+
+       function func2(){
+              let c = 20
+              console.log(c)
+         }
+
+      func2()
+   }
+
+func1()
+
+Result : == 10, undefined/error, 10
+
+
+
+
+
+  
+
+
+   var arr1 = [7,0,4,1,5,10]
+  
+   var newarr1 = arr1.map((val,i)=>{
+
+              if(val !== val[i]){
+                    return val[i]
+                 }
+     
+   })
+
+
+  console.log(newarr1)
+
+
+  function sec_high(arr){
+      var result = {}
+      var newarar = arr.sort((a,b)=> a-b)
+      var len= newarr.lenght
+
+      for(let i =0 ; i<len;i++){
+          if(arr[i].indexof(i) !== -1){
+              result.push(arr[i])
+        }
+           
+     }
+          
+    
+  }
+console.log(sec_high([7,0,4,1,5,10]))
+
+
+  #**** ****#
+
+   function login(){
+    retutn (
+
+              <div>Login</div>
+     )
+
+    }
+
+  export default Login
+
+
+   constLogin = () =>{
+    const [fname, setFName] = useState('')
+
+    const [lname, setLName] = useState('')
+
+    const [rollNo, setrollNo] = useState('')
+
+  
+    retutn (
+
+              <div>Login
+
+                          <h1>{{fname}}</h1>
+                          <h1>{{lname}}</h1>
+                          <h1>{{rollNo}}</h1>
+                 </div>
+     )
+
+    }
+  export default Login
+  
+   
+
+
+
+  import express from 'express'
+  import mongoose from mongoose 
+
+  const app = express()
+
+  app.get('/', (req,res)=>{
+       res.send('Hello server)
+   })
+
+  mongoose .connect('localhost://2702/my-app', {})
+  mongoose .on('connection', (error,req)={
+     console.log('Conected')
+  })
+ mongoose .on('error', (error)={
+     console.log(error)
+  })
+
+  app.get('/api/getusers', (req,res)=>{
+       const res = User.find({})
+       res.send(res)  
+   
+  })
+  app.listen(5000, ()=> console.log('Server started at port 5000'))
+
+
+
+
+
+  function prime_No(n){
+
+  if(n === 1){return false;}
+
+    else if(n===2){
+ return true;
+}
+   else{
+for(let i= 2; i<n;i++){
+              
+   if(n % 2 === 0){
+                  
+   return `${n} is not a prime no`
+              }
+          }
+          
+   return `${n} is a prime no`
+      }
+  }
+
+    console.log( prime_No(38))
+
+
+
+ jai2022
+ callboy@2022
+
+
+
+
+
+
+
+
+  8093154847
+
+
+Create a react functional component app.ts/js with a state with initial value 0. 
+now create 2 buttons next two each other and a submit button below them. 
+first 2 buttons should increase and decrese the states value by 5. 
+
+keep showing this value on screen . now once the value hits 50 change 
+the color of all 3 buttons and show on screen a statement "target reached" or
+ 
+similar statement . 
+
+now press the submit button and update this states value 
+into a redux state. 
+
+finally capture this redux value in some other functional 
+component abc. js/ts and display it.
+
+
+note:atleast 1 button should be from scratch 
+and 1 from styled-minimal library ,the styling of the components can be from 
+scratch or using styled components, your choice.
+
+
+  DB_NAME = 
+  HOST = 
+  PORT = 
+  TABLE_NAME = 
+
+
+
+
+
+
+import React,{useState,useEffect} from 'react'
+import styled from 'styled-components'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
+import app from "../firebase";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
+  const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000a7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Wrapper = styled.div`
+  width: 600px;
+  height: 600px;
+  background-color: ${({ theme }) => theme.bgLighter};
+  color: ${({ theme }) => theme.text};
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+`;
+const Close = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+`;
+const Title = styled.h1`
+  text-align: center;
+`;
+
+const Input = styled.input`
+  border: 1px solid ${({ theme }) => theme.soft};
+  color: ${({ theme }) => theme.text};
+  border-radius: 3px;
+  padding: 10px;
+  background-color: transparent;
+  z-index: 999;
+`;
+const Desc = styled.textarea`
+  border: 1px solid ${({ theme }) => theme.soft};
+  color: ${({ theme }) => theme.text};
+  border-radius: 3px;
+  padding: 10px;
+  background-color: transparent;
+`;
+const Button = styled.button`
+  border-radius: 3px;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.soft};
+  color: ${({ theme }) => theme.textSoft};
+`;
+const Label = styled.label`
+  font-size: 14px;
+`;
+
+
+
+const Upload = ({setOpen}) => {
+   const navigate = useNavigate()
+
+   const [video,setVideo] = useState(null)
+   const [file,setFile] = useState(null)
+   const [filePerc,setFilePerc] = useState(0)
+   const [videoPerc,setVideoPerc] = useState(0)
+   const [inputs, setInputs] = useState({});
+   const [tags,setTags] = useState([])
+
+
+
+   const handleTags = (e) =>{
+    setTags(e.target.value.split(","))
+   }
+   const handleChange = (e) => {
+    setInputs((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+   
+   const uploadFile = (file,urlType) =>{
+        // Create a root reference
+       const storage = getStorage(app);
+       const fileName = new Date().getTime() + file.name
+       const storageRef = ref(storage,file.fileName);
+       const uploadTask = uploadBytesResumable(storageRef, file);
+
+       uploadTask.on("state_changed",  (snapshot)=>{
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        urlType === "imgUrl"  ? setFilePerc(Math.round(progress))  : setVideoPerc(Math.round(progress))
+        switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+
+       },
+       (error) => {},
+       () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setInputs((prev) => {
+            return { ...prev, [urlType]: downloadURL };
+          });
+        });
+      }
+    
+       );
+
+   }
+
+    useEffect(() => {
+      video && uploadFile(video, "videoUrl")
+    }, [video])
+
+    useEffect(() => {
+        file &&  uploadFile(file, "imgUrl")
+      }, [file])
+    
+
+    const handleUplaod = async (e) =>{
+      e.preventDefault()
+      const res = await axios.post('/video/create', {...inputs, tags})
+      res.status === 200 && navigate(`/video/${res.data._id}`)
+    }  
+  return (
+       <Container>
+        <Wrapper>
+         <Close onClick={() => setOpen(false)}>X</Close>
+         <Title>Upload a New Video</Title>
+         <Label>Video:</Label>
+        {
+            videoPerc>0 ? ('Uploading:' + videoPerc + "%")
+            :
+            (
+                <Input 
+                type="file" 
+                accept="video/*" 
+                onChange={(e)=>setVideo(e.target.files[0])}/>
+            )
+        }
+
+         <Input type="text" placeholder="Title"
+              name="title"
+
+            onChage={handleChange}/>
+         <Desc placeholder="Description" rows={8} 
+              name="desc"
+             onChage={handleChange}/>
+
+         <Input type="text" placeholder="Separate tags with commas"
+         onChange={handleTags}/>
+
+         <Label>Image:</Label>
+        {
+            filePerc>0 ? ("Uploading:" + filePerc + "%") 
+            :
+            (
+                <Input 
+                type="file" 
+                accept="image/*" 
+                onChange={(e)=>setFile(e.target.files[0])} />
+            )
+        }
+
+
+         <Button onClick={handleUplaod}>Upload</Button>
+         </Wrapper>
+           
+        </Container>
+  )
+}
+
+export default Upload
+
+
+
+
+// Controller is used to handle what we do with request it's make short ourcode instead in writing     
+// routes folder (means logic)
+
+const AuthModel  = require('../models/Auth');
+const generateToken = require('../utils/generateToken')
+
+// // Registering User
+
+//REGISTER
+// /api/register 
+module.exports.signup = async (req, res) => {
+  const {name, mobileno, password} = req.body;
+  if(!name || !mobileno || !password) {
+    res.status(400).json('Please fill all fields..')
+  }
+
+ 
+
+
+
+
+
+function prime(num) {
+    
+   if(num === 0) return false
+    
+   if(num === 2) return true
+    
+   
+   for(let i = 2; i< num ; i++){
+        
+     if(num % 2 === 0){
+ 
+      return `${num} is not a prime no`
+ 
+       }
+   }
+   
+   
+ return `${num} is  a prime no`
+    
+}
+
+console.log(prime(13))
+
+
+The "slice is not a function" error occurs when the slice() 
+method is called on a value that is not of type string or array. 
+To solve the error, convert the value to a string or array before 
+calling the method or make sure to only call the slice method on strings or arrays.
+
+
+// 1. Find Maximum and minimum elemets of an array using minimum number of comparisons.
+
+
+// 
+function max_min(arr){
+      
+//       return arr.sort((val) =>{
+             
+//               return val.max()
+//       })
+    
+//     return arr
+// }
+
+// console.log(max_min([3,5,0,1,9]))
+
+
+// 2. Reverse array without using sorting 
+
+function rev_String(str){
+     
+      let reversed = ""
+      for(let i = str.length-1; i<str.length;i--){
+          reversed +=  str[i]
+      }
+      return reversed
+    
+}
+
+console.log(rev_String('deepak'))
+
+
+// 4. write a program to execute following pattern
+
+
+//  *
+//  ***
+// *****
+//  ***
+//   *
+  
+  
+//   function pattern(str) {
+      
+//     str = ""
+//     for(let i=0; i<str.length;i++){
+//         for(let j=i; j<i;j++){
+//             console.log('*')
+            
+//         }
+        
+//       }
+      
+//       return str = str + '*/n'
+//   }
+  
+//   pattern()
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+ 

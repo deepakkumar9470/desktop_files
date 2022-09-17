@@ -1,0 +1,623 @@
+{% load static %}
+
+{% include 'essentials/sidebarnav.html' %}
+
+{% block content %}
+
+<script src="{% static "offline/js/toastr.min.js" %}"></script>    
+<script src="{% static "offline/js/aws-sdk.min.js" %}"></script> 
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+
+<link rel="stylesheet" href="{% static "css/videoDashboard.css" %}">
+
+
+<div id="layoutSidenav_content" class="main_div" ng-app="Blurgsvideodashboard" ng-controller="videodashboard" style="padding-top: 20px">
+    <main class="main_container">
+    
+        <nav class="sb-topnav navbar navbar-expand justify-content-between">
+            <button class="btn-link btn-sm order-1 order-lg-0 me-1 me-lg-0 text-dark bg-transparent d-block d-md-none"
+            id="sidebarToggle" href="#!"><i class="fa fa-bars"></i></button>
+            <div class="page-title d-flex align-items-center justify-content-between flex-wrap">
+                <h4>Dashboard</h4>
+            </div>
+
+            
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 align-items-center gap-3">
+
+             {% comment %} Create project area start {% endcomment %}
+                <div class="cover-btn-or-ball">
+                
+                    <li class="nav-item mybtn">
+                        <a href="#" class="nav-link primary-btn" data-bs-toggle="modal"
+                        data-bs-target="#project-modal"><i class="uil uil-plus-circle"></i> 
+                        Create Project
+                        </a>
+          
+                   </li>
+
+                  {% comment %} Popup area start {% endcomment %}
+                     
+                     <div id="popUpmain" style="display: none;">
+                            <div id="popup">
+                                <p id="heading">Click button to Create project</p>
+                                <a class="close" id="close">x</a>
+                            </div>
+                        </div> 
+                   {% comment %} Popup area end {% endcomment %}
+                   
+
+                    <li class="nav-item">
+                        <a href="https://forms.gle/Hg5DuLrQeqWzJkDs8" target="_blank" class="nav-link primary-btn">Provide Feedback
+                        </a>
+                        
+                    </li>
+
+                </div>
+             {% comment %} Create project area end {% endcomment %}
+            </ul>
+
+        </nav>
+        
+        <div class='container-fluid' style="background:blue; text-align: center; color:white; margin-top: 15px;">
+               <strong>Our current services will be active from 10 - 4 pm, Monday to Friday. 
+                    We carry out development work during the down time. We hope you understand!
+                </strong> 
+        </div> 
+        
+          
+
+
+        <!-- All user videos -->
+     
+        <div class="cover-all-content">  
+
+
+                     {% if name  %}
+                        <div id="popUpmain2" class="popupmain2" style="display: none;">
+                            <div id="popup2">
+                                <p id="heading2">Click icon to create project</p>
+                                <a class="close2" id="close2">x</a>
+                            </div>
+                        </div> 
+                     
+                     {% endif %}
+                  
+                     
+                  {% comment %} Popup2 area start {% endcomment %}
+
+                     {% comment %} <div id="popUpmain2" class="popupmain2" style="display: none;">
+                            <div id="popup2">
+                                <p id="heading2">Click icon to create project</p>
+                                <a class="close2" id="close2">x</a>
+                            </div>
+                        </div>  {% endcomment %}
+
+                   {% comment %} Popup2 area end {% endcomment %}
+
+            <div class="cover-video-section" ng-repeat="project in userData.usage">
+            
+                <div class="video-date-title d-flex align-items-center justify-content-between">
+                   
+                    <h4>{[{project.name}]}</h4> <p>Service: {[{project.service}]}</p>
+                    
+                      
+                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4"> 
+
+                        <li class="nav-item" style="font-size: 150%;">
+
+                            <a href="#" data-bs-toggle="modal"
+                            data-bs-target="#video-modal" ng-click="selectProject(project)">
+                            <i class="uil uil-plus-circle"></i>
+                            </a>
+                              
+                            
+                            <a href="#" ng-click="deleteProject(project, $index)">
+                            <i class="uil uil-trash-alt" style="color: red; margin-left: 20px"></i>
+                            </a>
+                             
+
+                        </li>
+
+                    </ul>
+                    
+                    
+                </div>
+                
+                
+
+
+                <div class="cover-video-slider py-5">
+                    <data-owl-carousel class="owl-carousel owl-theme" data-options="{navigation: true, pagination: false, rewindNav : false}">
+
+                        <div class="item" owl-carousel-item="" ng-repeat='vdata in project.list'>
+                            <div class="cover-videos">
+                                <div class="cover-video-thumbnail">
+                                    <img src={[{vdata.s3Thumbnail}]} alt="" height="200">
+                                    <a id='gallery{[{$parent.$index}]}{[{$index}]}'href={[{vdata.s3DataURL}]} data-fancybox="gallery">
+	                                    <img src="{% static "img/video/youtube-view.png" %}" alt="" ng-show="(imgExts.indexOf((vdata.s3DataURL.split('.').pop() | lowercase ))>-1)">
+	                                    <img src="{% static "img/video/youtube-play.png" %}" alt="" ng-show="(vidExts.indexOf((vdata.s3DataURL.split('.').pop() | lowercase))>-1)">
+                                    </a>
+
+                                </div>
+
+                                <h3>{[{vdata.videoName}]}</h3>
+                                <div class="row">
+                                    <div class='col-sm-4'>
+                                        <button type="button" class="btn btn-default btn-xs" ng-click="processVideo(vdata, $parent.$index, $index)" ng-show='!vdata.s3ProcessedURL' 
+                                        id="btn{[{vdata.id}]}" 
+                                        style="margin: 0; padding:0"><small>process</small></button>
+
+                                        <p style="font-size: 10px" 
+                                        ng-show='vdata.s3ProcessedURL'>View processed </p>
+                                    </div>
+
+                                    <div class='col-sm-4'>
+                                        <!-- Rounded switch -->
+                                        <label class="switch" ng-show='vdata.s3ProcessedURL'>
+                                          <input type="checkbox" ng-click='toggleView($parent.$index, $index)'><span class="slider round"></span> 
+                                        </label>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <a href="#" ng-click="deleteMedia(vdata, project, $parent.$index, $index)"><i class="uil uil-trash-alt" style="color: red; margin-left: 20px"></i></a>
+
+                                        <a href="{[{vdata.downloadlink}]}" download ng-show='vdata.downloadlink' target='_blank'><i class="uil uil-download-alt" style="margin-left: 10px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </data-owl-carousel>
+                </div>
+            </div>
+
+            <div class="cover-video-section">
+                <div class="video-date-title d-flex align-items-center justify-content-between">
+                    <h4>Instruction Videos</h4>
+                </div>
+                
+                <div class="cover-video-slider py-5">
+                    <div class="owl-carousel owl-theme" id="">
+                        
+                        <div class="item">
+                            <div class="cover-videos">
+                                <div class="cover-video-thumbnail">
+                                    <img src="{% static "img/video/Service.png" %}" alt="">
+                                    <a href="https://youtu.be/AcK_bln8vy4" data-fancybox="gallery">
+                                        <img src="{% static "img/video/youtube-play.png" %}" alt="">
+                                    </a>
+                                </div>
+                                <h3>Service Usage Tutorial</h3>
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="item">
+                            <div class="cover-videos">
+                                <div class="cover-video-thumbnail">
+                                    <img src="{% static "img/video/APIService.png" %}" alt="">
+                                    <a href="https://youtu.be/phFij-01hBk" data-fancybox="gallery">
+                                        <img src="{% static "img/video/youtube-play.png" %}" alt="">
+                                    </a>
+                                </div>
+                                <h3>API Serive Tutorial</h3>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="item">
+                            <div class="cover-videos">
+                                <div class="cover-video-thumbnail">
+                                    <img src="{% static "img/video/Charge.png" %}" alt="">
+                                    <a href="https://youtu.be/phFij-01hBk" data-fancybox="gallery">
+                                        <img src="{% static "img/video/youtube-play.png" %}" alt="">
+                                    </a>
+                                </div>
+                                <h3>How do we charge?</h3>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+
+          
+                        <!-- Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true" id='video-modal'>
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="inner-image-uploader">
+                            <div class="text-left col-md-12 col-lg-12" ng-show="userData.user.plan.plan == 'F'">
+                                <p>We process every 25th frame in by default. If you would like to process every frame, please consider upgrading. Thank you!</p>
+                            </div>
+                            <div class="row align-items-center h-100">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label>Media Name</label>
+                                        <input type="text" ng-model="mediaName" placeholder="Enter media name" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label>Total no. Frames</label>
+                                        <input type="number" ng-model="nframes" placeholder="1" class="form-control" step="1">
+                                    </div>
+                                </div> -->
+
+                                <!-- <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label>Process Every nth Frame</label>
+                                        <input type="number" ng-model="processEvery" placeholder="1" class="form-control"step="1">
+                                    </div>
+                                </div> -->
+
+                           <!-- Upload image here start -->
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label>Select File</label>
+                                        <div ng-show="userData.user.plan.plan == 'F'">
+                                            <p>Upload images or videos of 5-10 mins or less than 1GB</p>
+                                        </div>
+                                        <input id='upfile' type='file' ng-model='upfile' class="form-control" accept='.jpg,.jpeg.,.png,.mov,.mp4,.avi' file></input>
+
+                                        <div id='imPreview' style="display: none;">
+                                            <img src="" id='thumbnailimg'>
+                                        </div>
+
+                                        <br>
+                                        <!-- Progress Bar -->
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="{[{ uploadProgress }]}" aria-valuemin="0" aria-valuemax="100" style="width: {[{ uploadProgress }]}%;">
+                                                {[{ uploadProgress == 0 ? '' : uploadProgress + '%' }]}
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <ul class="d-inline-block mt-3">
+                                        <button id="uploadbtn" class="primary-btn" ng-click="upload()" file>Upload</button>
+                                    </ul>   
+                                </div>
+                            <!-- Upload image here end-->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true" id='project-modal'>
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="inner-image-uploader">
+                            <div class="row align-items-center h-100">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label>Project Name</label>
+                                        <input type="text" ng-model="projectName" placeholder="Enter project name" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label>Service</label>
+                                        <select class="form-control" ng-model="service" ng-options="x.id as x.title for x in services">
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <ul class="d-inline-block mt-3">
+                                        <button id="uploadbtn" class="primary-btn" ng-click="createProject()">Create</button>
+                                    </ul>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</div>
+
+     {% comment %} Popup section start {% endcomment %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        
+               
+               <script>
+                 window.addEventListener("load", function(){
+                      setTimeout(
+                          function open(event){
+                              document.querySelector("#popUpmain").style.display = "block";
+                              
+                              setTimeout(function(){
+                                document.querySelector("#popUpmain").style.display = "none";
+                              },5000)
+                          },
+                          2000
+                      )
+                  });
+                  document.querySelector("#close").addEventListener("click", function(){
+                      document.querySelector("#popUpmain").style.display = "none";
+                  });
+
+                  
+               </script>
+
+                {% comment %} Popup2 script start {% endcomment %}
+               <script>
+                window.addEventListener("load", function(){
+                     setTimeout(
+                         function open(event){
+                             document.querySelector(".popupmain2").style.display = "block";
+                             setTimeout(function(){
+                               document.querySelector(".popupmain2").style.display = "none";
+                             },6000)
+                         },
+                         4000
+                     )
+                 });
+                 document.querySelector("#close2").addEventListener("click", function(){
+                     document.querySelector(".popupmain2").style.display = "none";
+                 });
+                 
+              </script> 
+              {% comment %} Popup2 script end {% endcomment %}
+          
+
+              
+ 
+ 
+    {% comment %} Popup section end {% endcomment %}
+
+<script src="{% static "js/videoDashboard.js" %}"></script>
+<script>
+$('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:false
+        }
+    }
+});
+</script>
+
+
+
+<style type="text/css">
+
+/*  Popup css here start*/
+
+.main_containerg{
+ background: rgba(0,0,0,0.6);
+}
+
+.main_div3{
+background: rgba(0,0,0,0.6);
+}
+
+.mybtn{
+    position:relative;
+}
+
+#popUpmain{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1005;
+}
+
+
+#popup{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   width: 280px;
+   height: 60px;
+   padding: 8px 0;
+   z-index: 1000;
+   position: absolute;
+   border-radius: 4px;
+   top: 60%;
+   right: 50%;
+   left:40%;
+   text-align: center;
+   transform: translate(-50%, -50%);
+   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+   background-color: #0093E9;
+   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+}
+
+#popup a{
+    text-decoration: none;
+}
+#close{
+    position: absolute;
+    top:0;
+    right: 0;
+    cursor: pointer;
+    background: #1C0A00;
+    color: #fff;
+    width: 15px;
+    font-size: 10px;
+    height: 15px;
+    border-radius: 50%;
+  
+}
+#heading{
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: #F7F7F7;
+    cursor: pointer;
+}
+
+
+#popUpmain2{
+    position: relative;
+    display: flex;
+    align-items:center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    z-index: 1005;
+}
+
+
+#popup2{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   width: 220px;
+   height: 45px;
+   padding: 10px 0;
+   z-index: 1000;
+   position: absolute;
+   border-radius: 4px;
+   top: 22%;
+   right:6%;
+   margin-top:5px;
+   margin-right: 22px;
+   text-align: center;
+   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.4);
+   background-color: #0093E9;
+   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+}
+
+#popup2 a{
+    text-decoration: none;
+    font-size:10px;
+}
+#close2{
+    position: absolute;
+    top:0;
+    right: 0;
+    cursor: pointer;
+    background: #1C0A00;
+    color: #fff;
+    width: 12px;
+    font-size: 8px;
+    height: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+  
+}
+#heading2{
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: #F7F7F7;
+    cursor: pointer;
+}
+
+/*  Popup css here end*/
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 1px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 12px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+</style>
+
+     
+
+          
+              
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+{% endblock %}

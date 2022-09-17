@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #16003B;
+  
+}
+
+input[type="file"]{
+    display: none;
+}
+
+label{
+    width: 250px;
+    height: 60px;
+    margin: auto;
+    color: #fff;
+    background: #3BACB6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    font-size:18px;
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 5px;
+    bottom: 0;
+    cursor: pointer;
+    animation: rotate 1s linear infinite;
+}
+

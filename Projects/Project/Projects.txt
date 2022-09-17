@@ -1,0 +1,174 @@
+   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
+   8340329056
+   822123 
+
+    mongoproject mongodb2022
+   
+   
+   https://www.facebook.com/watch?v=253662913625879
+
+   https://dataloop.ai/docs/create-semantic-segmentation
+
+   https://www.youtube.com/watch?v=-wUBcivCOk8
+   https://www.youtube.com/watch?v=SZEJNHTKR2A&t=132s
+   how to add popup in website when website open first time
+
+
+    https://www.themoviedb.org/documentation/api
+    https://www.freecodecamp.org/news/learn-react-in-1-hour-by-building-a-movie-search-app/
+    https://www.freecodecamp.org/news/react-movie-app-tutorial/
+
+
+    sbi202178@ybl
+    sbi20212970@apl
+   https://www.robots.ox.ac.uk/~vgg/software/via/
+
+#popup2{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   width: 250px;
+   height: 45px;
+   padding: 10px 0;
+   z-index: 1000;
+   position: absolute;
+   border-radius: 4px;
+   top: 50%;
+   right: 10%;
+   left:50%;
+   text-align: center;
+   
+   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+   background-color: #0093E9;
+   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+}
+    https://codingstatus.com/node-js-form-validation/
+  
+    
+     
+    deepakkumarchouhan272@gmail.com
+    Heroku@#2022
+    
+    deepakkumarchouhan272@gmail.com
+    Netlify@#2022
+ 
+    jaik01861@gmail.com
+    Dev@#2022
+    
+    
+    mantidevi97094@gmail.com
+    
+students-lists-app
+
+
+
+       #***** Database  *****#
+
+     
+1. Satya Sanatan  2. The Jaipur Dialogues  3. Pushpendra Kulshreshta Support
+4. Rang De Basanti 5. DO Politics 6. Pandit Mahender Pal Arya
+7. Neeraj Atri  8. Sudarshan News 9. String (multilingual)
+10. India IQ 11. Vaad Channel 12. Thanks Bharat
+13. Sachwala 14. Sach Guru 15. Ex-Muslim Zafar Heretic
+16. Abhijit Chavda
+17. Sangam Talks
+18. IslamKa Bawaal
+19. Shiksharthkam
+20. TheLiberal Hindu
+21. Festival of Bharat
+22. I am Buddha (Vivek Agnihotri)
+23. PGurus
+24. AKTK
+25. Charvaka Podcastq
+26. Tufail Chaturvedi 
+27. Abhinav Prakash
+28. SabLokTantra
+29. Citti Media
+30. Nitin Shukla Latest Video
+31. DK Dubey
+32. Prachyam
+33. The Frustrated Indian
+34. Harshavardhan Tripathi Show
+35. India Speaks Daily
+36. Upword
+37. Manushi India
+38. Buddhi 
+39. Advaita Kala
+40. Urban Pandits
+41. Akhand Bharat
+42. Political Spark
+43. Jamboo Talks
+44. The Abhishek Tiwary Show
+45. The Hindu Cafe
+46. Naman Sharma
+47. Defensive Offence
+48. Anuj Dhar
+49. Ishkaran Singh Bhandari 
+50. The Chanakya Dialogues Hindi
+51. We Support Pushpendra Kulshreshtha
+52. The Manish Thakur Show
+53. The Day Media
+54. Thug Bro
+55. Ashutosh Jha Thoughts
+56. Sattology
+57. Virat Hindustan Sangam
+58. Stories of Bengali Hindus
+59. Young Moves Media
+60. Dharm aur Moksh
+61. Peepoye
+62. India Thought
+63. Pratipaksh (Hindi/Marathi)
+64. Royal Soldier 
+65. Mission Cybersipahi
+66. Anju Pankaj
+67. OCN Network
+68. Engineer Reveals 
+69. Opindia 
+70. Rajiv Malhotra Official 
+71. The Real History of India 
+72. Swami Jitendrananad Saraswati 
+73. Baba Mourya
+74. Kali Dasi
+75. Almosow Free
+76. Indian Monk
+77. Chandrachur Ghose
+78. Vedic Dharma Rahasya
+79. The Alternate Media
+80. Secular Saint
+81. The Sham Sharma Show
+82. India In Details (Karolina Goswami)
+83. Rashtra Bhakt
+84. SHIVA SHAKTHI (multilingual)
+85. Sushant Sinha 
+86. Indix Online
+87. Pratik Borade
+88. Indian Affairs
+89. Festival Of Bharat
+90. The Rajdharma 
+91. aakar DIGI9 (Marathi)
+92. Manoj Muntashir
+93. Capital TV 
+94. VK News
+95. The Toak Show 
+96. Bhayankar Bhasad
+97. Project Shivoham
+98. Defence Detective
+99.  Ex-Muslim sahil
+100. ExMuslim Spartacus
+101. The Patriot Official
+102. The Scientific Hindu
+103. Secular Doge
+104. Ashwini Upadhyay 
+105. HINDU ZONE
+106. Indiplus News
+107. HINDU SENA NEWS
+108. Apka Akhbar
+109. Public 24×7
+110. Aikyam hindutva
+111. Say kshytiz
+112. Kattar Hindu Ashish
+113. Hindu Jana Shakti (Telugu)
+114. My Ashraya
+115. World Affairs
